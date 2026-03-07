@@ -12,17 +12,31 @@
       "tokens": ["BTC", "ETH", "SOL", "AVAX", "BNB", "XRP", "ADA", "DOGE"],
       "metrics": {
         "spot_score": {
+          "name": "Spot Score",
+          "description": "Aggregated spot market signal. Combines price momentum, volume, trend, and overextension. Negative = bearish, positive = bullish.",
+          "category": "Scores",
           "type": "number",
-          "min": -100,
-          "max": 100,
+          "min": -10,
+          "max": 10,
           "presets": [
-            { "label": "Strong bullish", "op": "gt", "val": 25 },
-            { "label": "Strong bearish", "op": "lt", "val": -25 }
+            { "label": "Strong GO (spot)", "op": "gte", "val": 5 },
+            { "label": "Strong NO-GO (spot)", "op": "lte", "val": -5 }
           ]
         },
         "spot_decision": {
+          "name": "Spot Go/No-Go",
+          "description": "Spot market trading signal. GO = bullish indicators aligned, NO-GO = bearish, STARTER = mixed signals.",
+          "category": "Decisions",
           "type": "enum",
           "values": ["GO", "STARTER", "NO-GO"]
+        },
+        "confidence": {
+          "name": "Signal Agreement",
+          "description": "How strongly indicators agree with each other, averaged across spot and perps. Higher = more indicators pointing the same direction.",
+          "category": "Signal Quality",
+          "type": "number",
+          "min": 0,
+          "max": 100
         }
       },
       "tier": "pro",

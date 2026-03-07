@@ -15,9 +15,13 @@
       "additionalProperties": {
         "type": "object",
         "properties": {
+          "name": { "type": "string", "description": "Display name for the metric" },
+          "description": { "type": "string", "description": "Human-readable explanation of what the metric measures" },
+          "category": { "type": "string", "description": "Grouping category (Decisions, Scores, Signal Quality, Market Context, Technical, Derivatives)" },
           "type": { "type": "string", "enum": ["number", "enum"] },
           "min": { "type": "number" },
           "max": { "type": "number" },
+          "step": { "type": "number" },
           "presets": { "type": "array", "items": { "type": "object" } },
           "values": { "type": "array", "items": { "type": "string" } }
         }
