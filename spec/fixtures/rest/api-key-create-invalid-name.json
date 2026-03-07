@@ -1,0 +1,16 @@
+{
+  "description": "POST /v1/user/api-keys — invalid name returns 400",
+  "request": {
+    "method": "POST",
+    "path": "/v1/user/api-keys",
+    "headers": { "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..." },
+    "body": { "name": "<script>alert(1)</script>" }
+  },
+  "response": {
+    "status": 400,
+    "schema": "error-4xx",
+    "body": {
+      "error": "name is required (alphanumeric, dashes, underscores, max 64 chars)"
+    }
+  }
+}

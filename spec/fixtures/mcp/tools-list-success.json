@@ -1,0 +1,79 @@
+{
+  "description": "MCP tools/list — enumerate available tools",
+  "request": {
+    "method": "POST",
+    "path": "/v1/mcp",
+    "headers": { "Content-Type": "application/json" },
+    "body": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "method": "tools/list",
+      "params": {}
+    }
+  },
+  "response": {
+    "status": 200,
+    "schema": "mcp-tools-list",
+    "body": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "tools": [
+          {
+            "name": "get_asset_score",
+            "description": "Get the composite trading score for a single cryptocurrency",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "symbol": { "type": "string", "description": "Token symbol (e.g. BTC, ETH)" }
+              },
+              "required": ["symbol"]
+            },
+            "annotations": {
+              "x-x402-price-usd": 0.10,
+              "x-x402-asset": "USDC"
+            }
+          },
+          {
+            "name": "get_market_data",
+            "description": "Get derived scoring data for all tracked assets",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "symbols": { "type": "string", "description": "Comma-separated token symbols (optional, defaults to all)" }
+              }
+            },
+            "annotations": {
+              "x-x402-price-usd": 0.45,
+              "x-x402-asset": "USDC"
+            }
+          },
+          {
+            "name": "get_fear_greed",
+            "description": "Get the current Fear & Greed index value",
+            "inputSchema": {
+              "type": "object",
+              "properties": {}
+            },
+            "annotations": {
+              "x-x402-price-usd": 0,
+              "x-x402-asset": "USDC"
+            }
+          },
+          {
+            "name": "list_assets",
+            "description": "List all tracked assets with their current scores",
+            "inputSchema": {
+              "type": "object",
+              "properties": {}
+            },
+            "annotations": {
+              "x-x402-price-usd": 0,
+              "x-x402-asset": "USDC"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "description": "GET /v1/payments/status — pro tier with active subscription",
+  "request": {
+    "method": "GET",
+    "path": "/v1/payments/status",
+    "headers": { "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..." }
+  },
+  "response": {
+    "status": 200,
+    "schema": "payment-status",
+    "body": {
+      "tier": "pro",
+      "tierName": "Pro",
+      "billingCycle": "monthly",
+      "expiresAt": "2026-04-07T12:34:56.789Z",
+      "maxSubs": 50,
+      "apiAccess": true,
+      "freeDataPushes": 1000,
+      "mode": "live",
+      "includedPushes": {
+        "total": 1000,
+        "used": 250,
+        "remaining": 750,
+        "periodStart": "2026-03-07T12:34:56.789Z",
+        "periodEnd": "2026-04-06T12:34:56.789Z"
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "description": "GET /v1/user/profile — missing auth returns 401",
+  "request": {
+    "method": "GET",
+    "path": "/v1/user/profile",
+    "headers": {}
+  },
+  "response": {
+    "status": 401,
+    "schema": "error-4xx",
+    "body": {
+      "error": "Unauthorized"
+    }
+  }
+}

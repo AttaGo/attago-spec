@@ -1,0 +1,34 @@
+{
+  "description": "MCP tools/call — paid tool (get_asset_score) without payment returns 402 in result",
+  "request": {
+    "method": "POST",
+    "path": "/v1/mcp",
+    "headers": { "Content-Type": "application/json" },
+    "body": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "method": "tools/call",
+      "params": {
+        "name": "get_asset_score",
+        "arguments": { "symbol": "BTC" }
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "schema": "mcp-tool-result",
+    "body": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\":\"Payment required\",\"message\":\"This tool costs $0.10 USDC. Include a PAYMENT-SIGNATURE header with your x402 payment.\"}"
+          }
+        ],
+        "isError": true
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "description": "Cognito InitiateAuth — successful token refresh",
+  "request": {
+    "method": "POST",
+    "path": "https://cognito-idp.us-east-1.amazonaws.com/",
+    "headers": {
+      "Content-Type": "application/x-amz-json-1.1",
+      "X-Amz-Target": "AWSCognitoIdentityProviderService.InitiateAuth"
+    },
+    "body": {
+      "AuthFlow": "REFRESH_TOKEN_AUTH",
+      "ClientId": "example-client-id",
+      "AuthParameters": {
+        "REFRESH_TOKEN": "eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.refresh-token"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "AuthenticationResult": {
+        "IdToken": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.new-id-token.signature",
+        "AccessToken": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.new-access-token.signature",
+        "TokenType": "Bearer",
+        "ExpiresIn": 3600
+      }
+    }
+  }
+}

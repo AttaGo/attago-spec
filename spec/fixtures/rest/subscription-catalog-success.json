@@ -1,0 +1,33 @@
+{
+  "description": "GET /v1/subscriptions/catalog — subscription catalog for pro tier",
+  "request": {
+    "method": "GET",
+    "path": "/v1/subscriptions/catalog",
+    "headers": { "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..." }
+  },
+  "response": {
+    "status": 200,
+    "schema": "subscription-catalog",
+    "body": {
+      "tokens": ["BTC", "ETH", "SOL", "AVAX", "BNB", "XRP", "ADA", "DOGE"],
+      "metrics": {
+        "spot_score": {
+          "type": "number",
+          "min": -100,
+          "max": 100,
+          "presets": [
+            { "label": "Strong bullish", "op": "gt", "val": 25 },
+            { "label": "Strong bearish", "op": "lt", "val": -25 }
+          ]
+        },
+        "spot_decision": {
+          "type": "enum",
+          "values": ["GO", "STARTER", "NO-GO"]
+        }
+      },
+      "tier": "pro",
+      "maxSubscriptions": 50,
+      "mode": "full"
+    }
+  }
+}

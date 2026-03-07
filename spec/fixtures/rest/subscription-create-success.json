@@ -1,0 +1,35 @@
+{
+  "description": "POST /v1/subscriptions — create alert subscription (flat format)",
+  "request": {
+    "method": "POST",
+    "path": "/v1/subscriptions",
+    "headers": { "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..." },
+    "body": {
+      "tokenId": "BTC",
+      "label": "BTC spot bullish",
+      "metricName": "spot_score",
+      "thresholdOp": "gt",
+      "thresholdVal": 25,
+      "cooldownMinutes": 5
+    }
+  },
+  "response": {
+    "status": 201,
+    "schema": "subscription",
+    "body": {
+      "userId": "abc123-def456-ghi789",
+      "subId": "BTC#spot_score",
+      "tokenId": "BTC",
+      "metricName": "spot_score",
+      "label": "BTC spot bullish",
+      "groups": [[{ "metricName": "spot_score", "thresholdOp": "gt", "thresholdVal": 25 }]],
+      "cooldownMinutes": 5,
+      "thresholdOp": "gt",
+      "thresholdVal": 25,
+      "bucketHash": "a1b2c3d4e5f67890",
+      "isActive": true,
+      "createdAt": "2026-03-07T12:34:56.789Z",
+      "updatedAt": "2026-03-07T12:34:56.789Z"
+    }
+  }
+}

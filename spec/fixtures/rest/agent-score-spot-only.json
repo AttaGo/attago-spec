@@ -1,0 +1,55 @@
+{
+  "description": "GET /v1/agent/score — asset with no derivatives data (perps is null)",
+  "request": {
+    "method": "GET",
+    "path": "/v1/agent/score",
+    "headers": { "X-API-Key": "ak_live_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789ab" },
+    "query": { "symbol": "ADA" }
+  },
+  "response": {
+    "status": 200,
+    "schema": "agent-score",
+    "body": {
+      "token": "ADA",
+      "composite": {
+        "score": 45,
+        "signal": "NEUTRAL",
+        "confidence": 0.62
+      },
+      "spot": {
+        "score": 22,
+        "decision": "STARTER",
+        "bias": "Chop",
+        "confidence": 0.58,
+        "components": [
+          { "name": "Volume Confluence", "score": 1.2, "band": "neutral" },
+          { "name": "Price Momentum", "score": -0.5, "band": "weak_negative" }
+        ]
+      },
+      "perps": null,
+      "context": {
+        "funding": null,
+        "positioning": null,
+        "oiTrend": null,
+        "basisSpread": null,
+        "liquidationPressure": null
+      },
+      "market": {
+        "regime": "Chop",
+        "btcDominance": 58.2,
+        "fearGreed": 50,
+        "altSeason": false
+      },
+      "derivSymbols": ["BTC", "ETH", "SOL", "AVAX"],
+      "hasDerivatives": false,
+      "sources": [
+        { "provider": "Coinglass", "api": "v4", "url": "https://open-api-v4.coinglass.com" }
+      ],
+      "meta": {
+        "timestamp": "2026-03-07T12:00:00.000Z",
+        "schemaVersion": "2.0",
+        "signalId": "b4e9d0f2c3a15678"
+      }
+    }
+  }
+}

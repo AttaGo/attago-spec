@@ -1,0 +1,33 @@
+{
+  "description": "Webhook v2 delivery payload — alert triggered",
+  "request": {
+    "method": "POST",
+    "path": "https://example.com/webhook",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-AttaGo-Signature": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
+      "X-AttaGo-Event": "alert",
+      "User-Agent": "AttaGo-Webhook/1.0"
+    }
+  },
+  "response": {
+    "status": 200,
+    "schema": "webhook-payload-v2",
+    "body": {
+      "event": "alert",
+      "version": "2",
+      "environment": "production",
+      "alert": {
+        "id": "BTC#spot_score",
+        "label": "BTC spot bullish",
+        "token": "BTC",
+        "state": "triggered"
+      },
+      "data": {
+        "url": "https://api.attago.bid/v1/data/push/2026-03-07T12-00-00-000Z-a1b2c3d4",
+        "expiresAt": "2026-03-10T12:00:00.000Z"
+      },
+      "timestamp": "2026-03-07T12:00:00.000Z"
+    }
+  }
+}

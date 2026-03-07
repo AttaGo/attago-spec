@@ -1,0 +1,15 @@
+{
+  "description": "DELETE /v1/user/api-keys/{id} — revoke API key",
+  "request": {
+    "method": "DELETE",
+    "path": "/v1/user/api-keys/f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "headers": { "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..." }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "revoked": true,
+      "keyId": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+    }
+  }
+}

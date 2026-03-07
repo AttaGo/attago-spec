@@ -1,0 +1,31 @@
+{
+  "description": "Cognito InitiateAuth — successful USER_PASSWORD_AUTH sign-in",
+  "request": {
+    "method": "POST",
+    "path": "https://cognito-idp.us-east-1.amazonaws.com/",
+    "headers": {
+      "Content-Type": "application/x-amz-json-1.1",
+      "X-Amz-Target": "AWSCognitoIdentityProviderService.InitiateAuth"
+    },
+    "body": {
+      "AuthFlow": "USER_PASSWORD_AUTH",
+      "ClientId": "example-client-id",
+      "AuthParameters": {
+        "USERNAME": "user@example.com",
+        "PASSWORD": "SecurePassword123!"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "AuthenticationResult": {
+        "IdToken": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhYmMxMjMiLCJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9FeGFtcGxlIiwidG9rZW5fdXNlIjoiaWQiLCJleHAiOjk5OTk5OTk5OTl9.signature",
+        "AccessToken": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.access-token-payload.signature",
+        "RefreshToken": "eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.refresh-token",
+        "TokenType": "Bearer",
+        "ExpiresIn": 3600
+      }
+    }
+  }
+}

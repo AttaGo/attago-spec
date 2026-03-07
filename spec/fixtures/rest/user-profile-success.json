@@ -1,0 +1,24 @@
+{
+  "description": "GET /v1/user/profile — authenticated user profile",
+  "request": {
+    "method": "GET",
+    "path": "/v1/user/profile",
+    "headers": { "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..." }
+  },
+  "response": {
+    "status": 200,
+    "schema": "user-profile",
+    "body": {
+      "userId": "abc123-def456-ghi789",
+      "email": "user@example.com",
+      "planTier": "pro",
+      "role": "user",
+      "effectiveTier": "pro",
+      "tierOverride": null,
+      "arenaUsername": null,
+      "deliveryPreference": "email,push",
+      "createdAt": "2026-01-15T10:30:00.000Z",
+      "updatedAt": "2026-03-07T12:00:00.000Z"
+    }
+  }
+}

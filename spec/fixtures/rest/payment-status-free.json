@@ -1,0 +1,22 @@
+{
+  "description": "GET /v1/payments/status — free tier (no subscription)",
+  "request": {
+    "method": "GET",
+    "path": "/v1/payments/status",
+    "headers": { "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..." }
+  },
+  "response": {
+    "status": 200,
+    "schema": "payment-status",
+    "body": {
+      "tier": "free",
+      "tierName": "Free",
+      "billingCycle": null,
+      "expiresAt": null,
+      "maxSubs": 3,
+      "apiAccess": false,
+      "freeDataPushes": 0,
+      "mode": "live"
+    }
+  }
+}

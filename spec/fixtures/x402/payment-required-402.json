@@ -1,0 +1,20 @@
+{
+  "description": "x402 402 Payment Required — subscribe endpoint without payment",
+  "request": {
+    "method": "POST",
+    "path": "/v1/payments/subscribe",
+    "headers": { "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..." },
+    "body": { "tier": "pro", "billingCycle": "monthly" }
+  },
+  "response": {
+    "status": 402,
+    "schema": "error-402",
+    "headers": {
+      "PAYMENT-REQUIRED": "<base64-encoded-json>"
+    },
+    "body": {
+      "error": "payment_required",
+      "message": "x402 payment required"
+    }
+  }
+}

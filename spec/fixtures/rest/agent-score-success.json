@@ -1,0 +1,67 @@
+{
+  "description": "GET /v1/agent/score — successful single-asset score via API key",
+  "request": {
+    "method": "GET",
+    "path": "/v1/agent/score",
+    "headers": { "X-API-Key": "ak_live_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789ab" },
+    "query": { "symbol": "BTC" }
+  },
+  "response": {
+    "status": 200,
+    "schema": "agent-score",
+    "body": {
+      "token": "BTC",
+      "composite": {
+        "score": 72,
+        "signal": "GO",
+        "confidence": 0.85
+      },
+      "spot": {
+        "score": 42,
+        "decision": "GO",
+        "bias": "Pumping",
+        "confidence": 0.82,
+        "components": [
+          { "name": "Volume Confluence", "score": 8.2, "band": "strong_positive" },
+          { "name": "Price Momentum", "score": 5.1, "band": "moderate_positive" },
+          { "name": "Trend Strength", "score": 3.8, "band": "weak_positive" }
+        ]
+      },
+      "perps": {
+        "score": 38,
+        "decision": "GO",
+        "bias": "Long",
+        "confidence": 0.88,
+        "squeezeRisk": "Low",
+        "components": [
+          { "name": "Funding Pressure", "score": 4.5, "band": "moderate_positive" },
+          { "name": "OI Momentum", "score": 6.1, "band": "moderate_positive" },
+          { "name": "Positioning", "score": 2.3, "band": "weak_positive" }
+        ]
+      },
+      "context": {
+        "funding": "elevated",
+        "positioning": "heavily_long",
+        "oiTrend": "increasing",
+        "basisSpread": "normal",
+        "liquidationPressure": "longs_exposed"
+      },
+      "market": {
+        "regime": "Risk-On",
+        "btcDominance": 58.2,
+        "fearGreed": 72,
+        "altSeason": false
+      },
+      "derivSymbols": ["BTC", "ETH", "SOL", "AVAX", "BNB", "XRP", "ADA", "DOGE"],
+      "hasDerivatives": true,
+      "sources": [
+        { "provider": "Coinglass", "api": "v4", "url": "https://open-api-v4.coinglass.com" }
+      ],
+      "meta": {
+        "timestamp": "2026-03-07T12:00:00.000Z",
+        "schemaVersion": "2.0",
+        "signalId": "a3f8c9d1e2b04567"
+      }
+    }
+  }
+}

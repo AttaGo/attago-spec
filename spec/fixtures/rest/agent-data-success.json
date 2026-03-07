@@ -1,0 +1,95 @@
+{
+  "description": "GET /v1/agent/data — successful multi-asset data via API key",
+  "request": {
+    "method": "GET",
+    "path": "/v1/agent/data",
+    "headers": { "X-API-Key": "ak_live_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789ab" }
+  },
+  "response": {
+    "status": 200,
+    "schema": "agent-data",
+    "body": {
+      "assets": {
+        "BTC": {
+          "token": "BTC",
+          "composite": { "score": 72, "signal": "GO", "confidence": 0.85 },
+          "spot": {
+            "score": 42,
+            "decision": "GO",
+            "bias": "Pumping",
+            "confidence": 0.82,
+            "components": [
+              { "name": "Volume Confluence", "score": 8.2, "band": "strong_positive" }
+            ]
+          },
+          "perps": {
+            "score": 38,
+            "decision": "GO",
+            "bias": "Long",
+            "confidence": 0.88,
+            "squeezeRisk": "Low",
+            "components": [
+              { "name": "Funding Pressure", "score": 4.5, "band": "moderate_positive" }
+            ]
+          },
+          "context": {
+            "funding": "elevated",
+            "positioning": "heavily_long",
+            "oiTrend": "increasing",
+            "basisSpread": "normal",
+            "liquidationPressure": "longs_exposed"
+          },
+          "derivSymbols": ["BTC", "ETH", "SOL", "AVAX"],
+          "hasDerivatives": true
+        },
+        "ETH": {
+          "token": "ETH",
+          "composite": { "score": 55, "signal": "NEUTRAL", "confidence": 0.71 },
+          "spot": {
+            "score": 30,
+            "decision": "STARTER",
+            "bias": "Chop",
+            "confidence": 0.65,
+            "components": [
+              { "name": "Volume Confluence", "score": 2.1, "band": "weak_positive" }
+            ]
+          },
+          "perps": {
+            "score": 25,
+            "decision": "STARTER",
+            "bias": "Neutral",
+            "confidence": 0.72,
+            "squeezeRisk": "Medium",
+            "components": [
+              { "name": "Funding Pressure", "score": -1.2, "band": "weak_negative" }
+            ]
+          },
+          "context": {
+            "funding": "neutral",
+            "positioning": "balanced",
+            "oiTrend": "stable",
+            "basisSpread": "normal",
+            "liquidationPressure": "balanced"
+          },
+          "derivSymbols": ["BTC", "ETH", "SOL", "AVAX"],
+          "hasDerivatives": true
+        }
+      },
+      "assetOrder": ["BTC", "ETH"],
+      "market": {
+        "regime": "Risk-On",
+        "btcDominance": 58.2,
+        "fearGreed": 72,
+        "altSeason": false
+      },
+      "sources": [
+        { "provider": "Coinglass", "api": "v4", "url": "https://open-api-v4.coinglass.com" }
+      ],
+      "meta": {
+        "timestamp": "2026-03-07T12:00:00.000Z",
+        "schemaVersion": "2.0",
+        "signalId": "c5f0e1g3d4b26789"
+      }
+    }
+  }
+}

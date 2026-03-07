@@ -1,0 +1,25 @@
+{
+  "description": "POST /v1/payments/subscribe — successful subscription with x402 payment",
+  "request": {
+    "method": "POST",
+    "path": "/v1/payments/subscribe",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "PAYMENT-SIGNATURE": "base64-encoded-x402-payment-signature"
+    },
+    "body": { "tier": "pro", "billingCycle": "monthly" }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "tier": "pro",
+      "billingCycle": "monthly",
+      "price": 29.99,
+      "currency": "USDC",
+      "expiresAt": "2026-04-07T12:34:56.789Z",
+      "payer": "0xabcdef0123456789abcdef0123456789abcdef01",
+      "mode": "live",
+      "message": "Subscription activated: Pro (monthly)"
+    }
+  }
+}

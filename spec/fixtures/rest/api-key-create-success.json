@@ -1,0 +1,20 @@
+{
+  "description": "POST /v1/user/api-keys — create new API key",
+  "request": {
+    "method": "POST",
+    "path": "/v1/user/api-keys",
+    "headers": { "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..." },
+    "body": { "name": "my-prod-key" }
+  },
+  "response": {
+    "status": 201,
+    "schema": "api-key",
+    "body": {
+      "keyId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+      "name": "my-prod-key",
+      "prefix": "ak_live_abcd",
+      "key": "ak_live_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789ab",
+      "createdAt": "2026-03-07T12:34:56.789Z"
+    }
+  }
+}

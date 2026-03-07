@@ -1,0 +1,29 @@
+{
+  "description": "GET /v1/data/latest — latest derived data for all assets",
+  "request": {
+    "method": "GET",
+    "path": "/v1/data/latest",
+    "headers": { "X-API-Key": "ak_live_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789ab" }
+  },
+  "response": {
+    "status": 200,
+    "schema": "data-latest",
+    "body": {
+      "assets": {
+        "BTC": {
+          "token": "BTC",
+          "composite": { "score": 72, "signal": "GO", "confidence": 0.85 },
+          "spot": { "score": 42, "decision": "GO", "bias": "Pumping", "confidence": 0.82, "components": [] },
+          "perps": { "score": 38, "decision": "GO", "bias": "Long", "confidence": 0.88, "squeezeRisk": "Low", "components": [] },
+          "context": { "funding": "elevated", "positioning": "heavily_long", "oiTrend": "increasing", "basisSpread": "normal", "liquidationPressure": "longs_exposed" },
+          "derivSymbols": ["BTC", "ETH", "SOL", "AVAX"],
+          "hasDerivatives": true
+        }
+      },
+      "assetOrder": ["BTC"],
+      "market": { "regime": "Risk-On", "btcDominance": 58.2, "fearGreed": 72, "altSeason": false },
+      "sources": [{ "provider": "Coinglass", "api": "v4", "url": "https://open-api-v4.coinglass.com" }],
+      "meta": { "timestamp": "2026-03-07T12:00:00.000Z", "schemaVersion": "2.0", "signalId": "e7h2g3i5f6d48901" }
+    }
+  }
+}

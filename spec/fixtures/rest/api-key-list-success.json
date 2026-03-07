@@ -1,0 +1,23 @@
+{
+  "description": "GET /v1/user/api-keys — list user's API keys (prefix only, never full key)",
+  "request": {
+    "method": "GET",
+    "path": "/v1/user/api-keys",
+    "headers": { "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..." }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "items": [
+        {
+          "keyId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+          "name": "my-prod-key",
+          "prefix": "ak_live_abcd",
+          "createdAt": "2026-03-07T12:34:56.789Z",
+          "lastUsedAt": "2026-03-07T14:22:00.000Z",
+          "revokedAt": null
+        }
+      ]
+    }
+  }
+}
