@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/subscription.schema.json",
+  "title": "Subscription",
+  "description": "Alert subscription object",
+  "type": "object",
+  "properties": {
+    "userId": { "type": "string" },
+    "subId": { "type": "string", "description": "Format: {tokenId}#{metricName}" },
+    "tokenId": { "type": "string" },
+    "metricName": { "type": "string" },
+    "label": { "type": "string" },
+    "groups": {
+      "type": "array",
+      "description": "OR-of-ANDs condition groups",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "metricName": { "type": "string" },
+            "thresholdOp": { "type": "string", "enum": ["gt", "lt", "gte", "lte", "eq"] },
+            "thresholdVal": { "oneOf": [{ "type": "number" }, { "type": "string" }] }
+          },
+          "required": ["metricName", "thresholdOp", "thresholdVal"]
+        }
+      }
+    },
+    "cooldownMinutes": { "type": "integer" },
+    "thresholdOp": { "type": "string", "enum": ["gt", "lt", "gte", "lte", "eq"] },
+    "thresholdVal": { "oneOf": [{ "type": "number" }, { "type": "string" }] },
+    "bucketHash": { "type": "string" },
+    "isActive": { "type": "boolean" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  },
+  "required": ["userId", "subId", "tokenId", "metricName", "isActive"]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/subscription-catalog.schema.json",
+  "title": "Subscription Catalog",
+  "description": "Available tokens, metrics, and tier info from GET /v1/subscriptions/catalog",
+  "type": "object",
+  "properties": {
+    "tokens": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Available token symbols"
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "enum": ["number", "enum"] },
+          "min": { "type": "number" },
+          "max": { "type": "number" },
+          "presets": { "type": "array", "items": { "type": "object" } },
+          "values": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "tier": { "type": "string" },
+    "maxSubscriptions": { "type": "integer" },
+    "mode": { "type": ["string", "null"], "enum": ["preset", "custom", "full", null] }
+  },
+  "required": ["tokens", "metrics", "tier", "maxSubscriptions"]
+}

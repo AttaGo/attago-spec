@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/data-push.schema.json",
+  "title": "Data Push Response",
+  "description": "Derived scoring data for a single token via data-push endpoint",
+  "type": "object",
+  "properties": {
+    "token": { "type": "string" },
+    "composite": {
+      "type": "object",
+      "properties": {
+        "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "signal": { "type": "string", "enum": ["GO", "NO-GO", "NEUTRAL"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "required": ["score", "signal", "confidence"]
+    },
+    "spot": { "type": "object" },
+    "perps": { "oneOf": [{ "type": "null" }, { "type": "object" }] },
+    "context": { "type": "object" },
+    "market": { "type": "object" },
+    "derivSymbols": { "type": "array", "items": { "type": "string" } },
+    "hasDerivatives": { "type": "boolean" },
+    "sources": { "type": "array" },
+    "meta": { "type": "object" },
+    "requestId": { "type": "string", "description": "Unique snapshot ID for 72-hour re-retrieval" },
+    "mode": { "type": "string", "enum": ["test", "live"] },
+    "bundle": {
+      "type": "object",
+      "properties": {
+        "bundleId": { "type": "string" },
+        "remaining": { "type": "integer" }
+      }
+    },
+    "includedPush": {
+      "type": "object",
+      "properties": {
+        "used": { "type": "integer" },
+        "total": { "type": "integer" },
+        "remaining": { "type": "integer" }
+      }
+    }
+  },
+  "required": ["token", "composite", "spot", "context", "market", "derivSymbols", "hasDerivatives", "sources", "meta", "requestId", "mode"]
+}

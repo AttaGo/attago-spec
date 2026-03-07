@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/api-key.schema.json",
+  "title": "API Key",
+  "description": "API key metadata (prefix only, never full key)",
+  "type": "object",
+  "properties": {
+    "keyId": { "type": "string" },
+    "name": { "type": "string" },
+    "prefix": { "type": "string", "description": "First 8 chars of the key (e.g. ak_live_a)" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "lastUsedAt": { "type": ["string", "null"], "format": "date-time" },
+    "revokedAt": { "type": ["string", "null"], "format": "date-time" }
+  },
+  "required": ["keyId", "name", "prefix", "createdAt"]
+}

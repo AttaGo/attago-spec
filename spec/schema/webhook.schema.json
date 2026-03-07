@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/webhook.schema.json",
+  "title": "Webhook Registration",
+  "description": "Registered webhook endpoint",
+  "type": "object",
+  "properties": {
+    "userId": { "type": "string" },
+    "webhookUrl": { "type": "string", "format": "uri" },
+    "secret": { "type": "string", "description": "HMAC-SHA256 secret (only returned on creation)" },
+    "createdAt": { "type": "string", "format": "date-time" }
+  },
+  "required": ["userId", "webhookUrl", "createdAt"]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/derived-component.schema.json",
+  "title": "Derived Component",
+  "description": "A single scored component within spot or perps analysis",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "score": { "type": "number" },
+    "band": {
+      "type": "string",
+      "enum": ["strong_negative", "moderate_negative", "weak_negative", "neutral", "weak_positive", "moderate_positive", "strong_positive"]
+    }
+  },
+  "required": ["name", "score", "band"]
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/wallet.schema.json",
+  "title": "Wallet Link",
+  "description": "Registered wallet from GET /v1/payments/wallets",
+  "type": "object",
+  "properties": {
+    "userId": { "type": "string" },
+    "walletAddress": { "type": "string" },
+    "chain": { "type": "string", "enum": ["base", "avalanche", "polygon", "arbitrum", "optimism", "solana"] },
+    "verifiedAt": { "type": "string", "format": "date-time" }
+  },
+  "required": ["userId", "walletAddress", "chain", "verifiedAt"]
+}

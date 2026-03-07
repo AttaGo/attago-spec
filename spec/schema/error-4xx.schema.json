@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/error-4xx.schema.json",
+  "title": "Error Response",
+  "description": "Standard error response for 4xx status codes",
+  "type": "object",
+  "properties": {
+    "error": { "type": "string", "description": "Error message" }
+  },
+  "required": ["error"]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/bundle.schema.json",
+  "title": "Bundle",
+  "description": "Data push credit bundle",
+  "type": "object",
+  "properties": {
+    "bundleId": { "type": "string", "format": "uuid" },
+    "userId": { "type": "string" },
+    "walletAddress": { "type": "string" },
+    "bundleName": { "type": "string" },
+    "totalPushes": { "type": "integer" },
+    "remaining": { "type": "integer" },
+    "price": { "type": "number" },
+    "purchasedAt": { "type": "string", "format": "date-time" },
+    "payer": { "type": "string" },
+    "transactionId": { "type": "string" }
+  },
+  "required": ["bundleId", "userId", "bundleName", "totalPushes", "remaining", "price", "purchasedAt"]
+}

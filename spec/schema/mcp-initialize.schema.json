@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/mcp-initialize.schema.json",
+  "title": "MCP Initialize Response",
+  "description": "JSON-RPC 2.0 response to initialize request",
+  "type": "object",
+  "properties": {
+    "jsonrpc": { "type": "string", "const": "2.0" },
+    "id": {},
+    "result": {
+      "type": "object",
+      "properties": {
+        "protocolVersion": { "type": "string" },
+        "capabilities": { "type": "object" },
+        "serverInfo": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "version": { "type": "string" }
+          },
+          "required": ["name", "version"]
+        }
+      },
+      "required": ["protocolVersion", "capabilities", "serverInfo"]
+    }
+  },
+  "required": ["jsonrpc", "id", "result"]
+}

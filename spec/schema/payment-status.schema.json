@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/payment-status.schema.json",
+  "title": "Payment Status",
+  "description": "Subscription payment status from GET /v1/payments/status",
+  "type": "object",
+  "properties": {
+    "tier": { "type": "string", "enum": ["free", "basic", "pro", "business"] },
+    "tierName": { "type": "string" },
+    "billingCycle": { "type": ["string", "null"] },
+    "expiresAt": { "type": ["string", "null"], "format": "date-time" },
+    "maxSubs": { "type": "integer" },
+    "apiAccess": { "type": "boolean" },
+    "freeDataPushes": { "type": "integer" },
+    "mode": { "type": "string", "enum": ["test", "live"] },
+    "expired": { "type": "boolean" },
+    "graceDaysRemaining": { "type": "integer" },
+    "downgraded": { "type": "boolean" },
+    "includedPushes": {
+      "type": "object",
+      "properties": {
+        "total": { "type": "integer" },
+        "used": { "type": "integer" },
+        "remaining": { "type": "integer" },
+        "periodStart": { "type": "string", "format": "date-time" },
+        "periodEnd": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "required": ["tier", "tierName", "maxSubs", "apiAccess", "freeDataPushes", "mode"]
+}

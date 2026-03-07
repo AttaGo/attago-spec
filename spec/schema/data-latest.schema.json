@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/data-latest.schema.json",
+  "title": "Latest Data Response",
+  "description": "Latest derived scoring data for all tracked assets from GET /v1/data/latest",
+  "type": "object",
+  "properties": {
+    "assets": {
+      "type": "object",
+      "additionalProperties": { "type": "object" }
+    },
+    "assetOrder": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "market": { "type": "object" },
+    "sources": { "type": "array" },
+    "meta": { "type": "object" }
+  },
+  "required": ["assets", "assetOrder", "market", "sources", "meta"]
+}

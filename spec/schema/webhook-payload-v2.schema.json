@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/webhook-payload-v2.schema.json",
+  "title": "Webhook Delivery Payload v2",
+  "description": "Slim callback webhook payload sent to registered endpoints",
+  "type": "object",
+  "properties": {
+    "event": { "type": "string", "const": "alert" },
+    "version": { "type": "string", "const": "2" },
+    "environment": { "type": "string", "enum": ["production", "staging", "dev"] },
+    "alert": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Subscription ID ({tokenId}#{metricName})" },
+        "label": { "type": "string" },
+        "token": { "type": "string" },
+        "state": { "type": "string", "enum": ["triggered", "resolved"] }
+      },
+      "required": ["id", "label", "token", "state"]
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "url": { "type": ["string", "null"], "format": "uri" },
+        "expiresAt": { "type": "string", "format": "date-time" },
+        "fallbackUrl": { "type": "string", "format": "uri" }
+      },
+      "required": ["url", "expiresAt"]
+    },
+    "timestamp": { "type": "string", "format": "date-time" }
+  },
+  "required": ["event", "version", "environment", "alert", "data", "timestamp"]
+}

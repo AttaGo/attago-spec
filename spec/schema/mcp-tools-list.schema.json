@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/mcp-tools-list.schema.json",
+  "title": "MCP Tools List Response",
+  "description": "JSON-RPC 2.0 response to tools/list request",
+  "type": "object",
+  "properties": {
+    "jsonrpc": { "type": "string", "const": "2.0" },
+    "id": {},
+    "result": {
+      "type": "object",
+      "properties": {
+        "tools": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "description": { "type": "string" },
+              "inputSchema": { "type": "object" },
+              "annotations": { "type": "object" }
+            },
+            "required": ["name", "description", "inputSchema"]
+          }
+        }
+      },
+      "required": ["tools"]
+    }
+  },
+  "required": ["jsonrpc", "id", "result"]
+}

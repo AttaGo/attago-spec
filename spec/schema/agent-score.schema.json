@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/agent-score.schema.json",
+  "title": "Agent Score Response",
+  "description": "Derived scoring data for a single asset from GET /v1/agent/score",
+  "type": "object",
+  "properties": {
+    "token": { "type": "string" },
+    "composite": {
+      "type": "object",
+      "properties": {
+        "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "signal": { "type": "string", "enum": ["GO", "NO-GO", "NEUTRAL"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "required": ["score", "signal", "confidence"]
+    },
+    "spot": {
+      "type": "object",
+      "properties": {
+        "score": { "type": "number" },
+        "decision": { "type": "string", "enum": ["GO", "STARTER", "NO-GO"] },
+        "bias": { "type": "string", "enum": ["Pumping", "Dumping", "Chop"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "components": {
+          "type": "array",
+          "items": { "$ref": "derived-component.schema.json" }
+        }
+      },
+      "required": ["score", "decision", "bias", "confidence", "components"]
+    },
+    "perps": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "properties": {
+            "score": { "type": "number" },
+            "decision": { "type": "string", "enum": ["GO", "STARTER", "NO-GO"] },
+            "bias": { "type": "string", "enum": ["Long", "Short", "Neutral"] },
+            "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+            "squeezeRisk": { "type": "string", "enum": ["Low", "Medium", "High"] },
+            "components": {
+              "type": "array",
+              "items": { "$ref": "derived-component.schema.json" }
+            }
+          },
+          "required": ["score", "decision", "bias", "confidence", "squeezeRisk", "components"]
+        }
+      ]
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "funding": { "type": ["string", "null"], "enum": ["negative", "neutral", "elevated", "extreme", null] },
+        "positioning": { "type": ["string", "null"], "enum": ["heavily_short", "balanced", "moderately_long", "heavily_long", null] },
+        "oiTrend": { "type": ["string", "null"], "enum": ["declining", "stable", "increasing", "aggressive_increase", null] },
+        "basisSpread": { "type": ["string", "null"], "enum": ["backwardation", "normal", "elevated", "extreme_contango", null] },
+        "liquidationPressure": { "type": ["string", "null"], "enum": ["shorts_exposed", "balanced", "longs_exposed", null] }
+      }
+    },
+    "market": {
+      "type": "object",
+      "properties": {
+        "regime": { "type": "string", "enum": ["Risk-On", "Risk-Off", "Chop"] },
+        "btcDominance": { "type": ["number", "null"] },
+        "fearGreed": { "type": ["integer", "null"], "minimum": 0, "maximum": 100 },
+        "altSeason": { "type": "boolean" }
+      },
+      "required": ["regime", "btcDominance", "fearGreed", "altSeason"]
+    },
+    "derivSymbols": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "hasDerivatives": { "type": "boolean" },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "provider": { "type": "string" },
+          "api": { "type": "string" },
+          "url": { "type": "string", "format": "uri" }
+        },
+        "required": ["provider", "api", "url"]
+      }
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "timestamp": { "type": "string", "format": "date-time" },
+        "schemaVersion": { "type": "string" },
+        "signalId": { "type": "string", "pattern": "^[0-9a-f]{16}$" }
+      },
+      "required": ["timestamp", "schemaVersion", "signalId"]
+    }
+  },
+  "required": ["token", "composite", "spot", "context", "market", "derivSymbols", "hasDerivatives", "sources", "meta"]
+}

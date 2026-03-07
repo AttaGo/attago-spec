@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/user-profile.schema.json",
+  "title": "User Profile",
+  "description": "User profile response from GET /v1/user/profile",
+  "type": "object",
+  "properties": {
+    "userId": { "type": "string", "description": "Cognito user ID (sub claim)" },
+    "email": { "type": "string", "format": "email" },
+    "planTier": { "type": "string", "enum": ["free", "basic", "pro", "business"] },
+    "role": { "type": "string", "enum": ["user", "tester", "moderator", "admin"] },
+    "effectiveTier": { "type": "string", "enum": ["free", "basic", "pro", "business"] },
+    "tierOverride": { "type": ["string", "null"], "enum": ["free", "basic", "pro", "business", null] },
+    "arenaUsername": { "type": ["string", "null"] },
+    "deliveryPreference": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  },
+  "required": ["userId", "email", "planTier"]
+}
