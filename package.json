@@ -1,0 +1,15 @@
+{
+  "name": "attago-spec",
+  "version": "1.0.0",
+  "description": "AttaGo API conformance spec — JSON Schemas and request/response fixtures",
+  "type": "module",
+  "scripts": {
+    "validate": "node validate.js"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AttaGo/attago-spec.git"
+  },
+  "private": true
+}
