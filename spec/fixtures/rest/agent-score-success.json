@@ -55,7 +55,11 @@
       "derivSymbols": ["BTC", "ETH", "SOL", "AVAX", "BNB", "XRP", "ADA", "DOGE"],
       "hasDerivatives": true,
       "sources": [
-        { "provider": "Coinglass", "api": "v4", "url": "https://open-api-v4.coinglass.com" }
+        "Coinglass (v4 Standard):coins",
+        "Coinglass (v4 Standard):spot",
+        "Coinglass (v4 Standard):fng",
+        "Coinglass (v4 Standard):btcdom",
+        "Coinglass (v4 Standard):rsi"
       ],
       "meta": {
         "timestamp": "2026-03-07T12:00:00.000Z",

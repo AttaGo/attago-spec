@@ -1,0 +1,18 @@
+{
+  "description": "POST /v1/user/webhooks/{id}/test — successful server-side test delivery",
+  "request": {
+    "method": "POST",
+    "path": "/v1/user/webhooks/{id}/test",
+    "headers": { "X-API-Key": "ak_live_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789ab" },
+    "pathParameters": { "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479" }
+  },
+  "response": {
+    "status": 200,
+    "schema": "webhook-test-result",
+    "body": {
+      "success": true,
+      "statusCode": 200,
+      "attempts": 1
+    }
+  }
+}

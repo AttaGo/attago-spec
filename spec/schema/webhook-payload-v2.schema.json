@@ -5,7 +5,7 @@
   "description": "Slim callback webhook payload sent to registered endpoints",
   "type": "object",
   "properties": {
-    "event": { "type": "string", "const": "alert" },
+    "event": { "type": "string", "enum": ["alert", "test"] },
     "version": { "type": "string", "const": "2" },
     "environment": { "type": "string", "enum": ["production", "staging", "dev"] },
     "alert": {

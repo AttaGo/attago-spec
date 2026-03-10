@@ -76,15 +76,8 @@
     "hasDerivatives": { "type": "boolean" },
     "sources": {
       "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "provider": { "type": "string" },
-          "api": { "type": "string" },
-          "url": { "type": "string", "format": "uri" }
-        },
-        "required": ["provider", "api", "url"]
-      }
+      "items": { "type": "string" },
+      "description": "Attribution strings, e.g. 'Coinglass (v4 Standard):coins'"
     },
     "meta": {
       "type": "object",

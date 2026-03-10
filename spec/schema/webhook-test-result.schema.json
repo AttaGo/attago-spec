@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/webhook-test-result.schema.json",
+  "title": "Webhook Test Delivery Result",
+  "description": "Result of a server-side or SDK-side webhook test delivery",
+  "type": "object",
+  "properties": {
+    "success": { "type": "boolean", "description": "Whether the receiver responded with 2xx" },
+    "statusCode": {
+      "type": ["integer", "null"],
+      "description": "HTTP status code from the receiver (null if network error)"
+    },
+    "attempts": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total delivery attempts (0 if rejected before HTTP, 1-4 otherwise)"
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message if delivery failed"
+    }
+  },
+  "required": ["success", "statusCode", "attempts"]
+}

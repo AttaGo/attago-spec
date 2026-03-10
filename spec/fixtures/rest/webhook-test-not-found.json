@@ -1,0 +1,16 @@
+{
+  "description": "POST /v1/user/webhooks/{id}/test — webhook not found",
+  "request": {
+    "method": "POST",
+    "path": "/v1/user/webhooks/{id}/test",
+    "headers": { "X-API-Key": "ak_live_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789ab" },
+    "pathParameters": { "id": "00000000-0000-0000-0000-000000000000" }
+  },
+  "response": {
+    "status": 404,
+    "schema": "error-4xx",
+    "body": {
+      "error": "Webhook not found"
+    }
+  }
+}
