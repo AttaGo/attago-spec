@@ -17,5 +17,5 @@
     "sources": { "type": "array" },
     "meta": { "type": "object" }
   },
-  "required": ["assets", "assetOrder", "market", "sources", "meta"]
+  "required": ["assets", "assetOrder"]
 }
