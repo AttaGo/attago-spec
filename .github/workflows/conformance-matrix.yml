@@ -1,0 +1,126 @@
+name: SDK Conformance Matrix
+
+on:
+  schedule:
+    # Weekly: Sunday 06:00 UTC
+    - cron: '0 6 * * 0'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - staging
+
+jobs:
+  typescript:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout spec
+        uses: actions/checkout@v4
+
+      - name: Checkout SDK
+        uses: actions/checkout@v4
+        with:
+          repository: AttaGo/attago-js-sdk
+          path: sdk
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: sdk/package-lock.json
+
+      - run: npm ci
+        working-directory: sdk
+
+      - run: npm run build
+        working-directory: sdk
+
+      - name: Run conformance
+        env:
+          ATTAGO_BASE_URL: ${{ inputs.environment == 'staging' && secrets.ATTAGO_STAGING_BASE_URL || secrets.ATTAGO_DEV_BASE_URL }}
+          ATTAGO_API_KEY: ${{ inputs.environment == 'staging' && secrets.ATTAGO_STAGING_API_KEY || secrets.ATTAGO_DEV_API_KEY }}
+          ATTAGO_SPEC_DIR: ${{ github.workspace }}
+        working-directory: sdk
+        run: npm run test:conformance
+
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout spec
+        uses: actions/checkout@v4
+
+      - name: Checkout SDK
+        uses: actions/checkout@v4
+        with:
+          repository: AttaGo/attago-py-sdk
+          path: sdk
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - run: pip install -e ".[dev]"
+        working-directory: sdk
+
+      - name: Run conformance
+        env:
+          ATTAGO_BASE_URL: ${{ inputs.environment == 'staging' && secrets.ATTAGO_STAGING_BASE_URL || secrets.ATTAGO_DEV_BASE_URL }}
+          ATTAGO_API_KEY: ${{ inputs.environment == 'staging' && secrets.ATTAGO_STAGING_API_KEY || secrets.ATTAGO_DEV_API_KEY }}
+          ATTAGO_SPEC_DIR: ${{ github.workspace }}
+        working-directory: sdk
+        run: pytest tests/conformance/ -v -m conformance
+
+  go:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout spec
+        uses: actions/checkout@v4
+
+      - name: Checkout SDK
+        uses: actions/checkout@v4
+        with:
+          repository: AttaGo/attago-go-sdk
+          path: sdk
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+
+      - name: Run conformance
+        env:
+          ATTAGO_BASE_URL: ${{ inputs.environment == 'staging' && secrets.ATTAGO_STAGING_BASE_URL || secrets.ATTAGO_DEV_BASE_URL }}
+          ATTAGO_API_KEY: ${{ inputs.environment == 'staging' && secrets.ATTAGO_STAGING_API_KEY || secrets.ATTAGO_DEV_API_KEY }}
+          ATTAGO_SPEC_DIR: ${{ github.workspace }}
+        working-directory: sdk
+        run: go test -v -tags conformance -run TestConformance ./...
+
+  ruby:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout spec
+        uses: actions/checkout@v4
+
+      - name: Checkout SDK
+        uses: actions/checkout@v4
+        with:
+          repository: AttaGo/attago-rb-sdk
+          path: sdk
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+          working-directory: sdk
+
+      - name: Run conformance
+        env:
+          ATTAGO_BASE_URL: ${{ inputs.environment == 'staging' && secrets.ATTAGO_STAGING_BASE_URL || secrets.ATTAGO_DEV_BASE_URL }}
+          ATTAGO_API_KEY: ${{ inputs.environment == 'staging' && secrets.ATTAGO_STAGING_API_KEY || secrets.ATTAGO_DEV_API_KEY }}
+          ATTAGO_SPEC_DIR: ${{ github.workspace }}
+        working-directory: sdk
+        run: bundle exec ruby -Ilib -Itest test/conformance/test_conformance.rb
