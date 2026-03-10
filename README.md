@@ -37,7 +37,3 @@ Each fixture is a JSON file:
 ```bash
 node validate.js
 ```
-
-## License
-
-MIT

@@ -6,7 +6,6 @@
   "scripts": {
     "validate": "node validate.js"
   },
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/AttaGo/attago-spec.git"
