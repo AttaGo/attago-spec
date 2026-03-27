@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/messaging-link-list.schema.json",
+  "title": "MessagingLinkList",
+  "description": "List of connected messaging platforms",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": { "$ref": "messaging-link.schema.json" }
+    }
+  },
+  "required": ["items"]
+}

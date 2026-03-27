@@ -1,0 +1,14 @@
+{
+  "description": "DELETE /v1/user/messaging/telegram — unlink Telegram account",
+  "request": {
+    "method": "DELETE",
+    "path": "/v1/user/messaging/telegram",
+    "headers": { "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..." }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "unlinked": true
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/messaging-test-result.schema.json",
+  "title": "MessagingTestResult",
+  "description": "Test delivery results per messaging platform",
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "object",
+      "properties": {
+        "telegram": {
+          "type": "object",
+          "properties": {
+            "success": { "type": "boolean" },
+            "error": { "type": ["string", "null"] }
+          },
+          "required": ["success"]
+        }
+      }
+    }
+  },
+  "required": ["results"]
+}

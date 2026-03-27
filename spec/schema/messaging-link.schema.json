@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.attago.io/schema/messaging-link.schema.json",
+  "title": "MessagingLink",
+  "description": "A linked messaging platform account",
+  "type": "object",
+  "properties": {
+    "userId": { "type": "string" },
+    "platform": { "type": "string", "enum": ["telegram"] },
+    "chatId": { "type": "string" },
+    "username": { "type": "string" },
+    "linkedAt": { "type": "string", "format": "date-time" }
+  },
+  "required": ["userId", "platform", "chatId", "username", "linkedAt"]
+}

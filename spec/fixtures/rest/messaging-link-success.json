@@ -1,0 +1,19 @@
+{
+  "description": "POST /v1/user/messaging/telegram/link — link Telegram account via code",
+  "request": {
+    "method": "POST",
+    "path": "/v1/user/messaging/telegram/link",
+    "headers": { "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..." },
+    "body": {
+      "code": "MX24BD"
+    }
+  },
+  "response": {
+    "status": 200,
+    "schema": "messaging-link",
+    "body": {
+      "linked": true,
+      "username": "johndoe"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "description": "GET /v1/user/messaging — list connected messaging platforms",
+  "request": {
+    "method": "GET",
+    "path": "/v1/user/messaging",
+    "headers": { "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..." }
+  },
+  "response": {
+    "status": 200,
+    "schema": "messaging-link-list",
+    "body": {
+      "items": [
+        {
+          "userId": "abc-123",
+          "platform": "telegram",
+          "chatId": "987654321",
+          "username": "johndoe",
+          "linkedAt": "2026-03-26T20:00:00Z"
+        }
+      ]
+    }
+  }
+}
