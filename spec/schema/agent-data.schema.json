@@ -10,95 +10,284 @@
       "additionalProperties": {
         "type": "object",
         "properties": {
-          "token": { "type": "string" },
+          "token": {
+            "type": "string"
+          },
           "composite": {
             "type": "object",
             "properties": {
-              "score": { "type": "integer", "minimum": 0, "maximum": 100 },
-              "signal": { "type": "string", "enum": ["GO", "NO-GO", "NEUTRAL"] },
-              "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+              "score": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "signal": {
+                "type": "string",
+                "enum": [
+                  "GO",
+                  "NO-GO",
+                  "NEUTRAL"
+                ]
+              },
+              "confidence": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
             },
-            "required": ["score", "signal", "confidence"]
+            "required": [
+              "score",
+              "signal",
+              "confidence"
+            ]
           },
           "spot": {
             "type": "object",
             "properties": {
-              "score": { "type": "number" },
-              "decision": { "type": "string", "enum": ["GO", "STARTER", "NO-GO"] },
-              "bias": { "type": "string", "enum": ["Pumping", "Dumping", "Chop"] },
-              "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+              "score": {
+                "type": "number"
+              },
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "GO",
+                  "STARTER",
+                  "NO-GO"
+                ]
+              },
+              "bias": {
+                "type": "string",
+                "enum": [
+                  "Pumping",
+                  "Dumping",
+                  "Chop"
+                ]
+              },
+              "confidence": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
               "components": {
                 "type": "array",
-                "items": { "$ref": "derived-component.schema.json" }
+                "items": {
+                  "$ref": "derived-component.schema.json"
+                }
               }
             },
-            "required": ["score", "decision", "bias", "confidence", "components"]
+            "required": [
+              "score",
+              "decision",
+              "bias",
+              "confidence",
+              "components"
+            ]
           },
           "perps": {
             "oneOf": [
-              { "type": "null" },
+              {
+                "type": "null"
+              },
               {
                 "type": "object",
                 "properties": {
-                  "score": { "type": "number" },
-                  "decision": { "type": "string", "enum": ["GO", "STARTER", "NO-GO"] },
-                  "bias": { "type": "string", "enum": ["Long", "Short", "Neutral"] },
-                  "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
-                  "squeezeRisk": { "type": "string", "enum": ["Low", "Medium", "High"] },
+                  "score": {
+                    "type": "number"
+                  },
+                  "decision": {
+                    "type": "string",
+                    "enum": [
+                      "GO",
+                      "STARTER",
+                      "NO-GO"
+                    ]
+                  },
+                  "bias": {
+                    "type": "string",
+                    "enum": [
+                      "Long",
+                      "Short",
+                      "Neutral"
+                    ]
+                  },
+                  "confidence": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "squeezeRisk": {
+                    "type": "string",
+                    "enum": [
+                      "Low",
+                      "Medium",
+                      "High"
+                    ]
+                  },
                   "components": {
                     "type": "array",
-                    "items": { "$ref": "derived-component.schema.json" }
+                    "items": {
+                      "$ref": "derived-component.schema.json"
+                    }
                   }
                 },
-                "required": ["score", "decision", "bias", "confidence", "squeezeRisk", "components"]
+                "required": [
+                  "score",
+                  "decision",
+                  "bias",
+                  "confidence",
+                  "squeezeRisk",
+                  "components"
+                ]
               }
             ]
           },
           "context": {
             "type": "object",
             "properties": {
-              "funding": { "type": ["string", "null"] },
-              "positioning": { "type": ["string", "null"] },
-              "oiTrend": { "type": ["string", "null"] },
-              "basisSpread": { "type": ["string", "null"] },
-              "liquidationPressure": { "type": ["string", "null"] }
+              "funding": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "positioning": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "oiTrend": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "basisSpread": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "liquidationPressure": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
             }
           },
-          "derivSymbols": { "type": "array", "items": { "type": "string" } },
-          "hasDerivatives": { "type": "boolean" }
+          "derivSymbols": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "hasDerivatives": {
+            "type": "boolean"
+          }
         },
-        "required": ["token", "composite", "spot", "context", "derivSymbols", "hasDerivatives"]
+        "required": [
+          "token",
+          "composite",
+          "spot",
+          "context",
+          "derivSymbols",
+          "hasDerivatives"
+        ]
       }
     },
     "assetOrder": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "Ordered list of asset symbols (by composite score descending)"
     },
     "market": {
       "type": "object",
       "properties": {
-        "regime": { "type": "string", "enum": ["Risk-On", "Risk-Off", "Chop"] },
-        "btcDominance": { "type": ["number", "null"] },
-        "fearGreed": { "type": ["integer", "null"], "minimum": 0, "maximum": 100 },
-        "altSeason": { "type": "boolean" }
+        "regime": {
+          "type": "string",
+          "enum": [
+            "Risk-On",
+            "Risk-Off",
+            "Chop"
+          ]
+        },
+        "btcDominance": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "fearGreed": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 100
+        },
+        "altSeason": {
+          "type": "boolean"
+        }
       },
-      "required": ["regime", "btcDominance", "fearGreed", "altSeason"]
+      "required": [
+        "regime",
+        "btcDominance",
+        "fearGreed",
+        "altSeason"
+      ]
     },
     "sources": {
       "type": "array",
-      "items": { "type": "string" },
-      "description": "Attribution strings, e.g. 'Coinglass (v4 Standard):coins'"
+      "items": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string",
+            "description": "Attribution string, e.g. 'Coinglass (v4 Standard)'"
+          },
+          "api": {
+            "type": "string",
+            "description": "Provider API version/segment, e.g. 'v4'"
+          },
+          "url": {
+            "type": "string",
+            "description": "Provider URL if published"
+          }
+        },
+        "additionalProperties": true
+      },
+      "description": "Data source attribution objects (openapi-internal.yaml AgentScore.sources). provider is not yet required: the deployed mapper drops it for string-typed upstream sources until the backend fallback fix ships."
     },
     "meta": {
       "type": "object",
       "properties": {
-        "timestamp": { "type": "string", "format": "date-time" },
-        "schemaVersion": { "type": "string" },
-        "signalId": { "type": "string", "pattern": "^[0-9a-f]{16}$" }
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "schemaVersion": {
+          "type": "string"
+        },
+        "signalId": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        }
       },
-      "required": ["timestamp", "schemaVersion", "signalId"]
+      "required": [
+        "timestamp",
+        "schemaVersion",
+        "signalId"
+      ]
     }
   },
-  "required": ["assets", "assetOrder", "market", "sources", "meta"]
+  "required": [
+    "assets",
+    "assetOrder",
+    "market",
+    "sources",
+    "meta"
+  ]
 }

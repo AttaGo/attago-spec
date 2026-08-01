@@ -41,3 +41,28 @@ _(Add entries with `cz_add_decision`.)_
 **Consequences**: Backend drift is caught within a week without coupling spec pushes to live-API load; an urgent check is one manual dispatch away.
 **Evidence**: .github/workflows/conformance-matrix.yml
 **Status**: active (2026-07-31)
+
+### D-005 — agent-score/agent-data sources are attribution OBJECTS {provider, api, url}, per the internal OpenAPI contract
+
+**Context**: The spec was born declaring sources as strings while openapi-internal.yaml (the declared contract of record, INVARIANT-02) says array-of-object and the deployed backend has emitted objects since attago e590577 (2026-03-02). Conformance failed family-wide on this from the first js dev run (2026-03-10), unseen because the weekly matrix auto-disabled on 2026-05-31 after 60 days of repo inactivity.
+**Decision**: sources in agent-score and agent-data schemas is an array of {provider, api, url} objects. provider is deliberately NOT required yet: the deployed mapper (attago lambda/payments derivedOpts) drops provider when the data layer supplies string sources; required:[provider] lands only after the backend fallback fix deploys.
+**Consequences**: Conformance matches live reality at the type level immediately; the attribution-content bug remains visible as an open item rather than being enshrined or hidden. Fixtures carry the ideal exemplar (provider populated).
+**Evidence**: attago docs/openapi-internal.yaml (~line 3078); attago lambda/payments/index.mjs derivedOpts (~line 1478); js dev CI run 2026-03-10 failure; conformance-matrix run 30682379626 (all four SDKs red)
+**Status**: active (2026-07-31)
+
+### D-006 — agent-score/agent-data sources are attribution OBJECTS {provider, api, url}, per the internal OpenAPI contract
+
+**Context**: The spec was born declaring sources as strings while openapi-internal.yaml (the declared contract of record, INVARIANT-02) says array-of-object and the deployed backend has emitted objects since attago e590577 (2026-03-02). Conformance failed family-wide on this from the first js dev run (2026-03-10), unseen because the weekly matrix auto-disabled on 2026-05-31 after 60 days of repo inactivity.
+**Decision**: sources in agent-score and agent-data schemas is an array of {provider, api, url} objects. provider is deliberately NOT required yet: the deployed mapper (attago lambda/payments derivedOpts) drops provider when the data layer supplies string sources; required:[provider] lands only after the backend fallback fix deploys.
+**Consequences**: Conformance matches live reality at the type level immediately; the attribution-content bug remains visible as an open item rather than being enshrined or hidden. Fixtures carry the ideal exemplar (provider populated).
+**Evidence**: attago docs/openapi-internal.yaml (~line 3078); attago lambda/payments/index.mjs derivedOpts (~line 1478); js dev CI run 2026-03-10 failure; conformance-matrix run 30682379626 (all four SDKs red)
+**Superseded by**: D-007 (2026-07-31)
+**Status**: superseded (2026-07-31)
+
+### D-007 — D-006 is a void duplicate of D-005 (batch retry artifact)
+
+**Context**: A partially-failed ops batch (open items rejected: no active gameplan) was re-run whole, re-appending its first op. The register is append-only, so the duplicate is voided by supersession rather than deletion.
+**Decision**: D-006 is void; D-005 is the canonical record of the sources-objects decision.
+**Consequences**: Readers and tooling treat D-005 as authoritative; nothing references D-006. Lesson: re-run only the FAILED ops of a partial batch, never the whole file.
+**Supersedes**: D-006
+**Status**: active (2026-07-31)
