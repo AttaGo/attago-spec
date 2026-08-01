@@ -1,10 +1,14 @@
 {
-  "description": "GET /v1/agent/score — successful single-asset score via API key",
+  "description": "GET /v1/agent/score \u2014 successful single-asset score via API key",
   "request": {
     "method": "GET",
     "path": "/v1/agent/score",
-    "headers": { "X-API-Key": "ak_live_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789ab" },
-    "query": { "symbol": "BTC" }
+    "headers": {
+      "X-API-Key": "ak_live_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789ab"
+    },
+    "query": {
+      "symbol": "BTC"
+    }
   },
   "response": {
     "status": 200,
@@ -22,9 +26,21 @@
         "bias": "Pumping",
         "confidence": 0.82,
         "components": [
-          { "name": "Volume Confluence", "score": 8.2, "band": "strong_positive" },
-          { "name": "Price Momentum", "score": 5.1, "band": "moderate_positive" },
-          { "name": "Trend Strength", "score": 3.8, "band": "weak_positive" }
+          {
+            "name": "Volume Confluence",
+            "score": 8.2,
+            "band": "strong_positive"
+          },
+          {
+            "name": "Price Momentum",
+            "score": 5.1,
+            "band": "moderate_positive"
+          },
+          {
+            "name": "Trend Strength",
+            "score": 3.8,
+            "band": "weak_positive"
+          }
         ]
       },
       "perps": {
@@ -34,9 +50,21 @@
         "confidence": 0.88,
         "squeezeRisk": "Low",
         "components": [
-          { "name": "Funding Pressure", "score": 4.5, "band": "moderate_positive" },
-          { "name": "OI Momentum", "score": 6.1, "band": "moderate_positive" },
-          { "name": "Positioning", "score": 2.3, "band": "weak_positive" }
+          {
+            "name": "Funding Pressure",
+            "score": 4.5,
+            "band": "moderate_positive"
+          },
+          {
+            "name": "OI Momentum",
+            "score": 6.1,
+            "band": "moderate_positive"
+          },
+          {
+            "name": "Positioning",
+            "score": 2.3,
+            "band": "weak_positive"
+          }
         ]
       },
       "context": {
@@ -52,14 +80,43 @@
         "fearGreed": 72,
         "altSeason": false
       },
-      "derivSymbols": ["BTC", "ETH", "SOL", "AVAX", "BNB", "XRP", "ADA", "DOGE"],
+      "derivSymbols": [
+        "BTC",
+        "ETH",
+        "SOL",
+        "AVAX",
+        "BNB",
+        "XRP",
+        "ADA",
+        "DOGE"
+      ],
       "hasDerivatives": true,
       "sources": [
-        "Coinglass (v4 Standard):coins",
-        "Coinglass (v4 Standard):spot",
-        "Coinglass (v4 Standard):fng",
-        "Coinglass (v4 Standard):btcdom",
-        "Coinglass (v4 Standard):rsi"
+        {
+          "provider": "Coinglass (v4 Standard)",
+          "api": "coins",
+          "url": ""
+        },
+        {
+          "provider": "Coinglass (v4 Standard)",
+          "api": "spot",
+          "url": ""
+        },
+        {
+          "provider": "Coinglass (v4 Standard)",
+          "api": "fng",
+          "url": ""
+        },
+        {
+          "provider": "Coinglass (v4 Standard)",
+          "api": "btcdom",
+          "url": ""
+        },
+        {
+          "provider": "Coinglass (v4 Standard)",
+          "api": "rsi",
+          "url": ""
+        }
       ],
       "meta": {
         "timestamp": "2026-03-07T12:00:00.000Z",

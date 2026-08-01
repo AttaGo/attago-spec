@@ -1,9 +1,11 @@
 {
-  "description": "GET /v1/agent/data — successful multi-asset data via API key",
+  "description": "GET /v1/agent/data \u2014 successful multi-asset data via API key",
   "request": {
     "method": "GET",
     "path": "/v1/agent/data",
-    "headers": { "X-API-Key": "ak_live_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789ab" }
+    "headers": {
+      "X-API-Key": "ak_live_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789ab"
+    }
   },
   "response": {
     "status": 200,
@@ -12,14 +14,22 @@
       "assets": {
         "BTC": {
           "token": "BTC",
-          "composite": { "score": 72, "signal": "GO", "confidence": 0.85 },
+          "composite": {
+            "score": 72,
+            "signal": "GO",
+            "confidence": 0.85
+          },
           "spot": {
             "score": 42,
             "decision": "GO",
             "bias": "Pumping",
             "confidence": 0.82,
             "components": [
-              { "name": "Volume Confluence", "score": 8.2, "band": "strong_positive" }
+              {
+                "name": "Volume Confluence",
+                "score": 8.2,
+                "band": "strong_positive"
+              }
             ]
           },
           "perps": {
@@ -29,7 +39,11 @@
             "confidence": 0.88,
             "squeezeRisk": "Low",
             "components": [
-              { "name": "Funding Pressure", "score": 4.5, "band": "moderate_positive" }
+              {
+                "name": "Funding Pressure",
+                "score": 4.5,
+                "band": "moderate_positive"
+              }
             ]
           },
           "context": {
@@ -39,19 +53,32 @@
             "basisSpread": "normal",
             "liquidationPressure": "longs_exposed"
           },
-          "derivSymbols": ["BTC", "ETH", "SOL", "AVAX"],
+          "derivSymbols": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "AVAX"
+          ],
           "hasDerivatives": true
         },
         "ETH": {
           "token": "ETH",
-          "composite": { "score": 55, "signal": "NEUTRAL", "confidence": 0.71 },
+          "composite": {
+            "score": 55,
+            "signal": "NEUTRAL",
+            "confidence": 0.71
+          },
           "spot": {
             "score": 30,
             "decision": "STARTER",
             "bias": "Chop",
             "confidence": 0.65,
             "components": [
-              { "name": "Volume Confluence", "score": 2.1, "band": "weak_positive" }
+              {
+                "name": "Volume Confluence",
+                "score": 2.1,
+                "band": "weak_positive"
+              }
             ]
           },
           "perps": {
@@ -61,7 +88,11 @@
             "confidence": 0.72,
             "squeezeRisk": "Medium",
             "components": [
-              { "name": "Funding Pressure", "score": -1.2, "band": "weak_negative" }
+              {
+                "name": "Funding Pressure",
+                "score": -1.2,
+                "band": "weak_negative"
+              }
             ]
           },
           "context": {
@@ -71,11 +102,19 @@
             "basisSpread": "normal",
             "liquidationPressure": "balanced"
           },
-          "derivSymbols": ["BTC", "ETH", "SOL", "AVAX"],
+          "derivSymbols": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "AVAX"
+          ],
           "hasDerivatives": true
         }
       },
-      "assetOrder": ["BTC", "ETH"],
+      "assetOrder": [
+        "BTC",
+        "ETH"
+      ],
       "market": {
         "regime": "Risk-On",
         "btcDominance": 58.2,
@@ -83,11 +122,31 @@
         "altSeason": false
       },
       "sources": [
-        "Coinglass (v4 Standard):coins",
-        "Coinglass (v4 Standard):spot",
-        "Coinglass (v4 Standard):fng",
-        "Coinglass (v4 Standard):btcdom",
-        "Coinglass (v4 Standard):rsi"
+        {
+          "provider": "Coinglass (v4 Standard)",
+          "api": "coins",
+          "url": ""
+        },
+        {
+          "provider": "Coinglass (v4 Standard)",
+          "api": "spot",
+          "url": ""
+        },
+        {
+          "provider": "Coinglass (v4 Standard)",
+          "api": "fng",
+          "url": ""
+        },
+        {
+          "provider": "Coinglass (v4 Standard)",
+          "api": "btcdom",
+          "url": ""
+        },
+        {
+          "provider": "Coinglass (v4 Standard)",
+          "api": "rsi",
+          "url": ""
+        }
       ],
       "meta": {
         "timestamp": "2026-03-07T12:00:00.000Z",

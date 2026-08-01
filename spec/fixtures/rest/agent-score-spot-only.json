@@ -1,10 +1,14 @@
 {
-  "description": "GET /v1/agent/score — asset with no derivatives data (perps is null)",
+  "description": "GET /v1/agent/score \u2014 asset with no derivatives data (perps is null)",
   "request": {
     "method": "GET",
     "path": "/v1/agent/score",
-    "headers": { "X-API-Key": "ak_live_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789ab" },
-    "query": { "symbol": "ADA" }
+    "headers": {
+      "X-API-Key": "ak_live_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789ab"
+    },
+    "query": {
+      "symbol": "ADA"
+    }
   },
   "response": {
     "status": 200,
@@ -22,8 +26,16 @@
         "bias": "Chop",
         "confidence": 0.58,
         "components": [
-          { "name": "Volume Confluence", "score": 1.2, "band": "neutral" },
-          { "name": "Price Momentum", "score": -0.5, "band": "weak_negative" }
+          {
+            "name": "Volume Confluence",
+            "score": 1.2,
+            "band": "neutral"
+          },
+          {
+            "name": "Price Momentum",
+            "score": -0.5,
+            "band": "weak_negative"
+          }
         ]
       },
       "perps": null,
@@ -40,14 +52,39 @@
         "fearGreed": 50,
         "altSeason": false
       },
-      "derivSymbols": ["BTC", "ETH", "SOL", "AVAX"],
+      "derivSymbols": [
+        "BTC",
+        "ETH",
+        "SOL",
+        "AVAX"
+      ],
       "hasDerivatives": false,
       "sources": [
-        "Coinglass (v4 Standard):coins",
-        "Coinglass (v4 Standard):spot",
-        "Coinglass (v4 Standard):fng",
-        "Coinglass (v4 Standard):btcdom",
-        "Coinglass (v4 Standard):rsi"
+        {
+          "provider": "Coinglass (v4 Standard)",
+          "api": "coins",
+          "url": ""
+        },
+        {
+          "provider": "Coinglass (v4 Standard)",
+          "api": "spot",
+          "url": ""
+        },
+        {
+          "provider": "Coinglass (v4 Standard)",
+          "api": "fng",
+          "url": ""
+        },
+        {
+          "provider": "Coinglass (v4 Standard)",
+          "api": "btcdom",
+          "url": ""
+        },
+        {
+          "provider": "Coinglass (v4 Standard)",
+          "api": "rsi",
+          "url": ""
+        }
       ],
       "meta": {
         "timestamp": "2026-03-07T12:00:00.000Z",
