@@ -15,3 +15,14 @@ resolved with a date instead. This is a permanent audit trail. Numbered `H-NN`.
 - **Root cause**: GitHub disables scheduled workflows in inactive repos; the design assumed the cron was unconditional. A weekly failure also notified no one (no alerting on scheduled-run conclusions).
 - **Reproduction**: gh workflow run conformance-matrix.yml → HTTP 422 "disabled workflow" (2026-08-01, before re-enable); run 30682379626 after re-enable: all four SDK jobs fail.
 - **Recommended fix**: (1) Keep-alive: scheduled heartbeat commit/workflow or external monitor asserting the matrix RAN each week and alerting on red. (2) Residual: tighten sources items to required:[provider] after the attago derivedOpts fallback deploys. (3) Residual: type data-latest/data-push sources honestly (currently unconstrained array). (4) js runner: skip requiresSetup fixtures like go/py/rb.
+
+### H-02 — Conformance depth varies wildly across the SDK family: only the ts runner validates response bodies against the schemas
+
+- **Severity**: medium
+- **Status**: open (2026-07-31)
+- **Affected**: attago-py-sdk tests/conformance/test_conformance.py (status only); attago-go-sdk conformance_test.go (partial structural); attago-rb-sdk test/conformance/test_conformance.rb (key spot-checks)
+- **Preconditions**: Any response-shape drift that keeps the HTTP status intact.
+- **Impact**: The family presents four "conformance suites" but their verification depth differs by an order of magnitude: attago-js-sdk uses real JSON Schema validation (ajv 2020-12); attago-go-sdk hand-rolls partial structural checks (did NOT catch string-vs-object sources); attago-rb-sdk spot-checks a few keys per schema name; attago-py-sdk asserts HTTP STATUS ONLY (its 99-line runner ends at the status assertion). The 2026-08-01 matrix proved it operationally: identical live drift failed ts and passed py/go/rb. A schema drift the reference catches is invisible to 3 of 4 SDKs — matrix green from those jobs certifies far less than it appears to.
+- **Root cause**: Each SDK hand-wrote its runner to its ecosystem convenience; the spec never stated a minimum verification contract for what a conformance runner MUST check (status + full schema validation of the body).
+- **Reproduction**: Matrix run 30682634162: ts fails agent-data-success on /sources/N type; py/go/rb pass the same fixture against the same live API.
+- **Recommended fix**: State the runner contract in this repo (README or a RUNNER-CONTRACT doc): a conforming runner validates status AND the full response body against the declared schema with a real JSON Schema 2020-12 validator. Bring py (jsonschema), go (santhosh-tekuri/jsonschema or similar), rb (json_schemer) up to it. Until then, read matrix green as ts-green + status-green elsewhere.
