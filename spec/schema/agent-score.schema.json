@@ -268,9 +268,12 @@
             "description": "Provider URL if published"
           }
         },
-        "additionalProperties": true
+        "additionalProperties": true,
+        "required": [
+          "provider"
+        ]
       },
-      "description": "Data source attribution objects (openapi-internal.yaml AgentScore.sources). provider is not yet required: the deployed mapper drops it for string-typed upstream sources until the backend fallback fix ships."
+      "description": "Data source attribution objects (openapi-internal.yaml AgentScore.sources)."
     },
     "meta": {
       "type": "object",
